@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SupernoveString</class>
+ <widget class="QMainWindow" name="SupernoveString">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>499</width>
+    <height>328</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QPushButton" name="x2b_btn_start">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>110</y>
+      <width>99</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>开始</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="x2b_txt_file">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>30</y>
+      <width>371</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="x2b_btn_select">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>30</y>
+      <width>99</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>str目录选择</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="x2b_txt_xls">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>70</y>
+      <width>371</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="x2b_btn_xls">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>70</y>
+      <width>99</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>excel选择</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>291</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>1. 将Str的bin文件转换为excel</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="x2b_tips">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>110</y>
+      <width>351</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>499</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>x2b_btn_start</sender>
+   <signal>clicked()</signal>
+   <receiver>SupernoveString</receiver>
+   <slot>xls2bin()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>428</x>
+     <y>163</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>249</x>
+     <y>202</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>x2b_btn_select</sender>
+   <signal>clicked()</signal>
+   <receiver>SupernoveString</receiver>
+   <slot>selfolder()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>467</x>
+     <y>80</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>336</x>
+     <y>49</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>x2b_btn_xls</sender>
+   <signal>clicked()</signal>
+   <receiver>SupernoveString</receiver>
+   <slot>selfile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>446</x>
+     <y>117</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>215</x>
+     <y>49</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>xls2bin()</slot>
+  <slot>selfolder()</slot>
+  <slot>selfile()</slot>
+ </slots>
+</ui>
