@@ -1,5 +1,6 @@
 #-*- coding: utf8 -*-
 import xlrd
+import xlwt
 import os
 import struct
 import sys
@@ -39,7 +40,7 @@ class XlsAndBin():
         #--------------------export data of string id (eg, ID_STR_XXX) in Excel to strStrIdArray
         for i in range(1,intRowCount):
             cell_value = mylist_sort[i-1][0]
-            fsStrRcH.write("#define " + cell_value + " " + str(i-1) + '\n')
+            fsStrRcH.write("#define " + cell_value + "    " + str(i-1) + '\n')
         fsStrRcH.close
 
         #**************************create directory src and files in it*************************/
@@ -138,3 +139,48 @@ class XlsAndBin():
                 fsStrResBin.write(struct.pack("B",0x00))
             fsStrResBin.close
         print "xls to bin is finished"
+
+    def XlsAndBin_bin2xls(self,strTargetDirec):
+        myworkbook = xlwt.Workbook()
+        mysheet = myworkbook.add_sheet("str",cell_overwrite_ok=True)
+
+        srcDirectoryPath = strTargetDirec + "/src/"
+        if os.path.exists(srcDirectoryPath) == False:
+            print "文件夹选择错误！此文件夹下必须有src文件夹，src里有一堆rc_XX"
+            return
+        #got a list to save rc_xx folder
+        folderlist_tmp = os.listdir(srcDirectoryPath)
+        if(len(folderlist_tmp) == 0):
+            print "without rc_XX folder..."
+            return
+        folderlist = []
+        for fl in folderlist_tmp:
+            folderlist.append(fl[3:])
+        #start to write excel for first line
+        mysheet.write(0,0,"ID")#first string
+        for i in range(0,len(folderlist)-1):
+            mysheet.write(0,i+1,folderlist[i])
+        #write excel for first column
+        strFile = srcDirectoryPath + "rc_" + folderlist[0] + "/Str.rc"
+        strfileread = open(strFile,'r')
+        linecnt = 1
+        for strline in strfileread:
+            #only save ID. eg: ID_DMP_BGM_OFF
+            mysheet.write(linecnt,0,strline[:strline.index(";,")])
+            linecnt += 1
+        strfileread.close()
+        #write all date 
+        for rcstrindex in range(0,len(folderlist)-1):
+            strFile = srcDirectoryPath + "rc_" + folderlist[rcstrindex] + "/Str.rc"
+            strfileread = open(strFile,'r')
+            linecnt = 1
+            for strline in strfileread:
+                mysheet.write(linecnt,rcstrindex+1,strline[strline.index(";,")+3:-2].decode('utf_8'))
+                linecnt += 1
+            strfileread.close()
+        #save
+        myworkbook.save(strTargetDirec + "/strExcel.xls")
+        print "bin to xls is finished"
+
+# myx = XlsAndBin()
+# myx.XlsAndBin_bin2xls("/tmp/str_default")

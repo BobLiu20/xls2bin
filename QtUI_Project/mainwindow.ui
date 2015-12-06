@@ -11,14 +11,14 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>SupernovaStr</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QPushButton" name="x2b_btn_start">
     <property name="geometry">
      <rect>
       <x>390</x>
-      <y>110</y>
+      <y>100</y>
       <width>99</width>
       <height>27</height>
      </rect>
@@ -31,7 +31,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>30</y>
+      <y>70</y>
       <width>371</width>
       <height>31</height>
      </rect>
@@ -41,7 +41,7 @@
     <property name="geometry">
      <rect>
       <x>390</x>
-      <y>30</y>
+      <y>70</y>
       <width>99</width>
       <height>27</height>
      </rect>
@@ -54,7 +54,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>70</y>
+      <y>30</y>
       <width>371</width>
       <height>31</height>
      </rect>
@@ -64,7 +64,7 @@
     <property name="geometry">
      <rect>
       <x>390</x>
-      <y>70</y>
+      <y>30</y>
       <width>99</width>
       <height>27</height>
      </rect>
@@ -83,20 +83,69 @@
      </rect>
     </property>
     <property name="text">
-     <string>1. 将Str的bin文件转换为excel</string>
+     <string>1. 将excel转换为str rc bin</string>
     </property>
    </widget>
    <widget class="QLabel" name="x2b_tips">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>110</y>
+      <x>10</x>
+      <y>240</y>
       <width>351</width>
       <height>17</height>
      </rect>
     </property>
     <property name="text">
-     <string/>
+     <string>Hello World! --CVTE Supernova team</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>150</y>
+      <width>281</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>2. 将str rc bin转换为excel</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="x2b_txt_file_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>170</y>
+      <width>371</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="x2b_btn_select_2">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>170</y>
+      <width>99</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>str目录选择</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="x2b_btn_start_2">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>200</y>
+      <width>99</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>开始</string>
     </property>
    </widget>
   </widget>
@@ -171,10 +220,44 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>x2b_btn_select_2</sender>
+   <signal>clicked()</signal>
+   <receiver>SupernoveString</receiver>
+   <slot>selfolder2()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>455</x>
+     <y>223</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>445</x>
+     <y>265</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>x2b_btn_start_2</sender>
+   <signal>clicked()</signal>
+   <receiver>SupernoveString</receiver>
+   <slot>bin2xls()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>476</x>
+     <y>252</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>489</x>
+     <y>279</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>xls2bin()</slot>
   <slot>selfolder()</slot>
   <slot>selfile()</slot>
+  <slot>bin2xls()</slot>
+  <slot>selfolder2()</slot>
  </slots>
 </ui>

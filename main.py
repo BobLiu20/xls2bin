@@ -2,7 +2,7 @@ import sys
 import os
 #*********For QT ui
 from PyQt4 import QtCore , QtGui
-from qtui import Ui_MainWindow
+from qtui import Ui_SupernoveString
 #*********For Action interface
 from XlsAndBin import XlsAndBin
 
@@ -15,7 +15,7 @@ except AttributeError:
 class MyForm(QtGui.QMainWindow):
     def __init__(self, parent=None):
         QtGui.QWidget.__init__(self, parent)
-        self.ui = Ui_MainWindow()    #note: instance, not the class
+        self.ui = Ui_SupernoveString()    #note: instance, not the class
         self.ui.setupUi(self)
         self.XlsAndBin_Ins = XlsAndBin()
 
@@ -27,6 +27,14 @@ class MyForm(QtGui.QMainWindow):
         except:
             self.ui.x2b_tips.setText("what's wrong? call @Bob as soon.")
 
+    def bin2xls(self, parent=None):
+        self.ui.x2b_tips.setText("Start!")
+        try:
+            self.XlsAndBin_Ins.XlsAndBin_bin2xls(self.strfolder2)
+            self.ui.x2b_tips.setText("Finshed!")
+        except:
+            self.ui.x2b_tips.setText("what's wrong? call @Bob as soon.")
+
     def selfolder(self, parent=None):
         self.strfolder = QtGui.QFileDialog.getExistingDirectory(parent,
                     _fromUtf8("Please select your directory.(eg: str_default)"),
@@ -34,6 +42,18 @@ class MyForm(QtGui.QMainWindow):
         self.ui.x2b_txt_file.setText(self.strfolder)
         if os.path.exists(self.strfolder) == False:
             self.ui.x2b_tips.setText("The str directory is wrong!")
+        else:
+            self.ui.x2b_tips.setText("Ready...")
+
+    def selfolder2(self, parent=None):
+        self.strfolder2 = QtGui.QFileDialog.getExistingDirectory(parent,
+                    _fromUtf8("Please select your directory.(eg: str_default)"),
+                    _fromUtf8("open file dialog"));
+        self.ui.x2b_txt_file_2.setText(self.strfolder2)
+        if os.path.exists(self.strfolder2) == False:
+            self.ui.x2b_tips.setText("The str directory is wrong!")
+        else:
+            self.ui.x2b_tips.setText("Ready...")
 
     def selfile(self, parent=None):
         self.xlsdirectory = QtGui.QFileDialog.getOpenFileName(parent,
@@ -42,6 +62,8 @@ class MyForm(QtGui.QMainWindow):
         self.ui.x2b_txt_xls.setText(self.xlsdirectory)
         if os.path.exists(self.xlsdirectory) == False:
             self.ui.x2b_tips.setText("The excel file is wrong!")
+        else:
+            self.ui.x2b_tips.setText("Ready...")
 
 if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)
