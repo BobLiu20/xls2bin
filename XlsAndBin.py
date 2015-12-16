@@ -59,6 +59,8 @@ class XlsAndBin():
             fsStrRcH.truncate()
             intStrByteCount = 0        #the total byte count of the all the string in one language , get ready for \src\rc_XX\bin\Str_res.bin
             for j in range(1,intRowCount):
+                if(isinstance(mylist_sort[j-1][i],float)):
+                    mylist_sort[j-1][i] = str(int(mylist_sort[j-1][i]))
                 fsStrRcH.write(mylist_sort[j-1][0] + ";,\"" + mylist_sort[j-1][i] + "\"\n")
                 str_tmp = mylist_sort[j-1][i].replace("\\n",'\n')
                 intStrByteCount += (len(str_tmp.encode('utf_8')) + 1)
