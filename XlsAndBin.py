@@ -160,7 +160,7 @@ class XlsAndBin():
             folderlist.append(fl[3:])
         #start to write excel for first line
         mysheet.write(0,0,"ID")#first string
-        for i in range(0,len(folderlist)-1):
+        for i in range(0,len(folderlist)):
             mysheet.write(0,i+1,folderlist[i])
         #write excel for first column
         strFile = srcDirectoryPath + "rc_" + folderlist[0] + "/Str.rc"
@@ -172,7 +172,7 @@ class XlsAndBin():
             linecnt += 1
         strfileread.close()
         #write all date 
-        for rcstrindex in range(0,len(folderlist)-1):
+        for rcstrindex in range(0,len(folderlist)):
             strFile = srcDirectoryPath + "rc_" + folderlist[rcstrindex] + "/Str.rc"
             strfileread = open(strFile,'r')
             linecnt = 1
