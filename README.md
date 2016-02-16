@@ -10,3 +10,4 @@ Use for Mstar Supernova string translate
 
 
 baifang20@qq.com
+
