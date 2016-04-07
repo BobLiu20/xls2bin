@@ -7,6 +7,11 @@ Use for Mstar Supernova string translate
 
 
 最后，可以使用pyinstaller打包生成对应平台的可执行文件
+安装的话使用sudo pip install pyinstaller
+
+用这个生成可执行文件：
+
+pyinstaller main.py
 
 
 baifang20@qq.com
