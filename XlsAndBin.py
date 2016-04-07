@@ -7,6 +7,10 @@ import sys
 reload(sys)
 sys.setdefaultencoding( "utf-8" )
 
+#define your folder name
+RC_INC = "/include" #"/inc"
+RC_STR = "/rc"      #"/str"
+
 class XlsAndBin():
     def XlsAndBin_xls2bin(self,excelpath , strTargetDirec):
         myworkbook = xlrd.open_workbook(excelpath)
@@ -29,7 +33,7 @@ class XlsAndBin():
 
         #**************************create directory inc and files in it*************************
         #-------------create directory inc
-        strTmpDirectoryPath = strTargetDirec + "/inc";
+        strTmpDirectoryPath = strTargetDirec + RC_INC;
         if os.path.exists(strTmpDirectoryPath) == False:
             os.mkdir(strTmpDirectoryPath)
 
@@ -45,12 +49,12 @@ class XlsAndBin():
 
         #**************************create directory src and files in it*************************/
         #-------------create directory src
-        strTmpDirectoryPath = strTargetDirec + "/src";
+        strTmpDirectoryPath = strTargetDirec + RC_STR;
         if os.path.exists(strTmpDirectoryPath) == False:
             os.mkdir(strTmpDirectoryPath)
 
         for i in range(1,intColumnCount):
-            strDirectoryPath = strTargetDirec  + "/src" + "/rc_" + mysheet.cell(0,i).value;
+            strDirectoryPath = strTargetDirec  + RC_STR + "/rc_" + mysheet.cell(0,i).value;
             if os.path.exists(strDirectoryPath) == False:
                 os.mkdir(strDirectoryPath)
             #--------------------create file: src/rc_XXX/Str.rc & clear it
@@ -146,9 +150,9 @@ class XlsAndBin():
         myworkbook = xlwt.Workbook()
         mysheet = myworkbook.add_sheet("str",cell_overwrite_ok=True)
 
-        srcDirectoryPath = strTargetDirec + "/src/"
+        srcDirectoryPath = strTargetDirec + RC_STR
         if os.path.exists(srcDirectoryPath) == False:
-            print "文件夹选择错误！此文件夹下必须有src文件夹，src里有一堆rc_XX"
+            print("文件夹选择错误！此文件夹下必须有%s文件夹，%s里有一堆rc_XX"%(RC_STR,RC_STR))
             return
         #got a list to save rc_xx folder
         folderlist_tmp = os.listdir(srcDirectoryPath)
@@ -163,7 +167,7 @@ class XlsAndBin():
         for i in range(0,len(folderlist)):
             mysheet.write(0,i+1,folderlist[i])
         #write excel for first column
-        strFile = srcDirectoryPath + "rc_" + folderlist[0] + "/Str.rc"
+        strFile = srcDirectoryPath + "/rc_" + folderlist[0] + "/Str.rc"
         strfileread = open(strFile,'r')
         linecnt = 1
         for strline in strfileread:
@@ -173,7 +177,7 @@ class XlsAndBin():
         strfileread.close()
         #write all date 
         for rcstrindex in range(0,len(folderlist)):
-            strFile = srcDirectoryPath + "rc_" + folderlist[rcstrindex] + "/Str.rc"
+            strFile = srcDirectoryPath + "/rc_" + folderlist[rcstrindex] + "/Str.rc"
             strfileread = open(strFile,'r')
             linecnt = 1
             for strline in strfileread:
