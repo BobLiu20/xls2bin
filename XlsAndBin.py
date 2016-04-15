@@ -39,7 +39,7 @@ class XlsAndBin():
 
         #--------------------create or open file inc/Str.rc.h & clear it if the file already exists
         strFile = strTmpDirectoryPath + "/Str.rc.h";
-        fsStrRcH = open(strFile,'w')
+        fsStrRcH = open(strFile,'wb')
 
         #--------------------export data of string id (eg, ID_STR_XXX) in Excel to strStrIdArray
         for i in range(1,intRowCount):
@@ -59,7 +59,7 @@ class XlsAndBin():
                 os.mkdir(strDirectoryPath)
             #--------------------create file: src/rc_XXX/Str.rc & clear it
             strFile = strDirectoryPath + "/Str.rc";
-            fsStrRcH = open(strFile,'w')
+            fsStrRcH = open(strFile,'wb')
             fsStrRcH.truncate()
             intStrByteCount = 0        #the total byte count of the all the string in one language , get ready for \src\rc_XX\bin\Str_res.bin
             for j in range(1,intRowCount):
@@ -71,7 +71,7 @@ class XlsAndBin():
             fsStrRcH.close
             #--------------------create file: src/str_XXX/ResProfile and add data to them
             strFile = strDirectoryPath + "/ResProfile";
-            fsStrRcH = open(strFile,'w')
+            fsStrRcH = open(strFile,'wb')
             fsStrRcH.truncate()
             fsStrRcH.write("Str;rc_" + mysheet.cell(0,i).value + "/Str.rc\n")
             fsStrRcH.write("Color;rc/Color.rc\n");
@@ -88,7 +88,7 @@ class XlsAndBin():
                 os.mkdir(strDirectoryPath)
             #--------------------create file: src/str_XXX/bin/font_res.bin and add data to them
             strFile = strDirectoryPath + "/font_res.bin";
-            fsStrRcH = open(strFile,'w')
+            fsStrRcH = open(strFile,'wb')
             fsStrRcH.truncate()
             byteFontResBinHeader = [0x5F, 0x74, 0x73, 0x6D, 0x38, 0x00, 0x00, 0x00,
                                     0x04, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,
@@ -103,7 +103,7 @@ class XlsAndBin():
             fsStrRcH.close
             #--------------------create file: src/str_XXX/bin/Str_res.bin and add data to them
             strFile = strDirectoryPath + "/Str_res.bin";
-            fsStrResBin = open(strFile,'w')
+            fsStrResBin = open(strFile,'wb')
             fsStrResBin.truncate()
             #---------------------add header datas for src/str_XXX/bin/Str_res.bin
             intTotalbytes = 0x38;   #byte number of bin header 
